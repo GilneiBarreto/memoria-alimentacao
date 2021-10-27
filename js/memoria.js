@@ -71,7 +71,16 @@ const iniciaJogo = () => {
 	valorCartaVirada = 0;
 	pontos = 0;
 
+	//Remover os detalhes das imagens
+	detalhes = document.querySelectorAll('.media');
+	if (detalhes){
+		detalhes.forEach((e)=>{
+			e.parentNode.removeChild(e);
+		});
+	}
 	// ajusta a interface
+
+	
 	document.querySelector('#btInicio').disabled = true;
 	document.querySelector('#timer').style.backgroundColor = 'orange';
 	timerDoJogo.start();
@@ -154,13 +163,12 @@ function Timer(e){
 		}, 1000);
 	};
 	this.stop = () =>{
-
 		//Exibe os detalhes das imagens
 
 		detalhe = '';
 		imagens.forEach(i => {
 			detalhe += `<li class="media">
-			<img class="mr-3" src=${i.img} alt=${i.nome}>
+			<div class="mr-3" style="background-image:url(${i.img}); width:80px; height: 80px; background-size: 100%; background-position: center;"></div>
 			<div class="media-body">
 			  <h5 class="mt-0 mb-1">${i.nome}</h5>
 			  ${i.detalhes}
